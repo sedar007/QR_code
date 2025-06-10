@@ -16,6 +16,13 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build libpng-dev libqrencode-dev
 
+      - name: Locate qrencode.pc
+        run: |
+          find /usr -name qrencode.pc || true
+          export PKG_CONFIG_PATH=$(dirname $(find /usr -name qrencode.pc | head -n1))
+          echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+          pkg-config --modversion qrencode
+
       - name: Verify qrencode install
         run: |
           pkg-config --modversion qrencode
