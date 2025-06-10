@@ -1,0 +1,25 @@
+# CMake build directories
+/build/
+/cmake-build-*/
+.vscode/*
+
+# CLion project files
+.idea/
+*.iml
+
+# macOS system files
+.DS_Store
+
+# Compiled object files and executables
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.a
+*.dylib
+
+# Logs and temporary files
+*.log
+*.tmp
