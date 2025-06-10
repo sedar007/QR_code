@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build libpng-dev libqrencode-dev
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y cmake libpng-dev libqrencode-dev pkg-config
 
       - name: Locate qrencode.pc
         run: |
