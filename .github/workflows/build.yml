@@ -16,6 +16,11 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build libpng-dev libqrencode-dev
 
+      - name: Verify qrencode install
+        run: |
+          pkg-config --modversion qrencode
+          ls /usr/include | grep qrencode
+
       - name: Configure CMake
         run: cmake -S . -B build -G Ninja
 
