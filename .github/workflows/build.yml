@@ -18,20 +18,11 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y cmake libpng-dev libqrencode-dev pkg-config
 
-      - name: Locate qrencode.pc
-        run: |
-          find /usr -name qrencode.pc || true
-          export PKG_CONFIG_PATH=$(dirname $(find /usr -name qrencode.pc | head -n1))
-          echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
-          pkg-config --modversion qrencode
+      - name: Create build directory
+        run: mkdir -p build
 
-      - name: Verify qrencode install
-        run: |
-          pkg-config --modversion qrencode
-          ls /usr/include | grep qrencode
-
-      - name: Configure CMake
-        run: cmake -S . -B build -G Ninja
-
-      - name: Build
+      - name: Configure with CMake
+        run: cmake -S . -B build
+  
+      - name: Build project
         run: cmake --build build
